@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Class Store App</title>
+		<meta charset="utf-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="w3-panel w3-red">
+			<br>
+			<label for="item">Item</label>
+			<input type=text id="item" style="width: 150px"></input>
+
+			<label for="category">Category</label>
+			<select id="categorydd">
+				<option></option>
+				<option value="baking">Baking</option>
+				<option value="beverages">Beverages</option>
+				<option value="canned goods">Canned Goods</option>
+				<option value="cereal">Cereal/Breakfast</option>
+				<option value="condiments">Condiments</option>
+				<option value="dairy">Dairy</option>
+				<option value="deli">Deli</option>
+				<option value="frozen">Frozen</option>
+				<option value="meat">Meat</option>
+				<option value="misc">Misc</option>
+				<option value="non-food">Non-Food Items</option>
+				<option value="pasta/rice">Pasta/Rice</option>
+				<option value="produce">Produce</option>
+				<option value="snacks">Snacks</option>
+			</select>
+			
+			<label for="quantity">Quantity</label>
+			<select id="quantitydd">
+				<option></option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			
+			<br>
+			
+			<label for="store">Store</label>
+			<select id="storedd">
+				<option></option>
+				<option value="Co-op">Co-op</option>
+				<option value="Fairway">Fairway</option>
+				<option value="Walmart">Walmart</option>
+				<option value="Culvers">Culvers</option>
+			</select>
+			
+			<label for="priority">Priority</label>
+			<select id="prioritydd">
+				<option></option>
+				<option value="high">High</option>
+				<option value="medium">Medium</option>
+				<option value="low">Low</option>
+			</select>
+
+			<label for="price">Price</label>
+			<input type=text id="price" style="width: 80px"></input>
+
+			<button type=button onclick="addItem()"" class="appStore btn btn-primary" id=gobutt>Add</button>
+			<script src="storeApp.js" type=text/javascript></script>
+	 
+		</div>
+		<br>
+		<br>
+		<div id="outputbox">
+
+		</div>
+		
+	</body>
+</html>
