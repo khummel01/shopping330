@@ -10,13 +10,12 @@
 	</head>
 	
 	<body>
-		<div class="w3-panel w3-red">
-			<br>
+		<form id= "inputForm">
 			<label for="item">Item</label>
 			<input type=text id="item" style="width: 150px"></input>
 
-			<label for="category">Category</label>
-			<select id="categorydd">
+			<label for="section">Section</label>
+			<select id="sectiondd">
 				<option></option>
 				<option value="baking">Baking</option>
 				<option value="beverages">Beverages</option>
@@ -48,14 +47,12 @@
 				<option value="9">9</option>
 				<option value="10">10</option>
 			</select>
-			
-			<br>
-			
+							
 			<label for="store">Store</label>
 			<select id="storedd">
 				<option></option>
 				<option value="Co-op">Co-op</option>
-				<option value="Fairway">Fairway</option>
+				<option value="Fareway">Fareway</option>
 				<option value="Walmart">Walmart</option>
 				<option value="Culvers">Culvers</option>
 			</select>
@@ -71,15 +68,22 @@
 			<label for="price">Price</label>
 			<input type=text id="price" style="width: 80px"></input>
 
-			<button type=button onclick="addItem()"" class="appStore btn btn-primary" id=gobutt>Add</button>
-			<script src="storeApp.js" type=text/javascript></script>
-	 
-		</div>
-		<br>
-		<br>
-		<div id="outputbox">
+			<button type=button onclick="addItem()" class="appStore btn btn-primary" id=gobutt>Add Item</button>
+			<script src="js/storeApp.js" type=text/javascript></script>
+		</form>
 
-		</div>
-		
+		<br>
+
+		<table class="table table-striped" id="itemlst">
+			<tr>
+				<th>Item</th>
+				<th>Section</th>
+				<th>Quantity</th>
+				<th>Store</th>
+				<th>Priority</th>
+				<th>Price</th>
+			</tr>
+		</table>
+
 	</body>
 </html>
