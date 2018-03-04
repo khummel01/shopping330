@@ -29,3 +29,12 @@ function addItem() {
 	}
 	document.getElementById("inputForm").reset();
 }
+
+
+// let row = myTable.insertRow(rowNum);
+// let cell = row.insertCell(0);
+// let chkBox = document.createElement("input");
+// chkBox.type = "checkbox";
+// chkBox.id = rowNum;
+// chkBox.checked = false;
+// cell.innerHTML = chkBox;

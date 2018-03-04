@@ -3,15 +3,77 @@
 	<head>
 		<title>Class Store App</title>
 		<meta charset="utf-8"> 
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet"/>
+
+		<script type="application/javascript" src="js/pubSub.js"></script>
+		<script type="application/javascript" src="js/shoppingController.js"></script>
+		<script type="application/javascript" src="js/model.js"></script>
 	</head>
+
+	<script>
+		let pubSub = new Subject();
+		let controller = new ShoppingController(pubSub);
+
+// view subscribe to shoppingtable, pass table
+		let eventListener = function(scope, msg) {
+			let shoppingList = msg;
+
+			// adding HTML to the page
+			let myTable = document.getElementById("itemlst");
+			// clear table
+			let rowCount = myTable.rows.length;
+			for (let i = rowCount-1; i > 0; i--) {
+				myTable.deleteRow(i);
+			}
+
+			let rowNum = 1;
+			for (let i = 0; i < shoppingList.getLength(); i++) {			
+				let gets = [];
+				gets.push(shoppingList.getItems()[i].getItem());
+				gets.push(shoppingList.getItems()[i].getSection());
+				gets.push(shoppingList.getItems()[i].getQuantity());
+				gets.push(shoppingList.getItems()[i].getStore());
+				gets.push(shoppingList.getItems()[i].getPriority());
+				gets.push(shoppingList.getItems()[i].getPrice());
+
+				let row = myTable.insertRow(rowNum);
+				let chkBox = document.createElement("input");
+				chkBox.type = "checkbox";
+				chkBox.id = rowNum;
+				chkBox.checked = false;
+				row.appendChild(chkBox);
+				for (let j = 0; j < 6; j++) {
+					let cell = row.insertCell(j); 
+					cell.innerHTML = gets[j];
+				}
+				rowNum += 1;
+			}
+			
+			document.getElementById("inputForm").reset();
+		}
+
+		// register the listener function with Subject
+		pubSub.subscribe(eventListener);
+
+		function newItem() {
+			let name = document.querySelector("#item").value;
+			let section = document.querySelector("#sectiondd").value;
+			let quantity = document.querySelector("#quantitydd").value;
+			let store = document.querySelector("#storedd").value;
+			let priority = document.querySelector("#prioritydd").value;
+			let price = document.querySelector("#price").value;
+			let spec = {"name": name, "section": section, "quantity": quantity, "store": store, "priority": priority, "price": price};
+			controller.newItem(spec);
+		}
+
+	</script>
 	
 	<body>
 		<!-- Navigation -->
@@ -100,13 +162,13 @@
 					<label for="price">Price</label>
 					<input type=text id="price" style="width: 80px" class="form-control"></input>
 				</div>
-				<button type=button onclick="addItem()" class="appStore btn btn-primary" id=gobutt>Add Item</button>
-				<script src="js/storeApp.js" type=text/javascript></script>
+				<button type=button onclick="newItem()" id=gobutt>Add Item</button>
 			</div>
 		</form>
 		<br>
 		<table class="table table-striped" id="itemlst">
 			<tr>
+				<th>Bought</th>
 				<th>Item</th>
 				<th>Section</th>
 				<th>Quantity</th>
@@ -117,4 +179,5 @@
 		</table>
 
 	</body>
+
 </html>
