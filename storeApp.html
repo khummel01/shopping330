@@ -20,7 +20,6 @@
 	<script>
 		let pubSub = new Subject();
 		let controller = new ShoppingController(pubSub);
-
 // view subscribe to shoppingtable, pass table
 		let eventListener = function(scope, msg) {
 			let shoppingList = msg;
@@ -44,10 +43,12 @@
 				gets.push(shoppingList.getItems()[i].getPrice());
 
 				let row = myTable.insertRow(rowNum);
+				row.id = "row" + rowNum;
 				let chkBox = document.createElement("input");
+				chkBox.id = "chkBox" + rowNum;
 				chkBox.type = "checkbox";
-				chkBox.id = rowNum;
 				chkBox.checked = false;
+				chkBox.onclick = strikeThrough.bind(chkBox.type, chkBox.id, chkBox.checked, row.id); // ????
 				row.appendChild(chkBox);
 				for (let j = 0; j < 6; j++) {
 					let cell = row.insertCell(j); 
@@ -72,6 +73,21 @@
 			let spec = {"name": name, "section": section, "quantity": quantity, "store": store, "priority": priority, "price": price};
 			controller.newItem(spec);
 		}
+
+		// needs to be finished
+		function strikeThrough(chkBoxId, checked, rowId, mouseEvent) { // weird occurance here
+			if (checked == false) {
+				tableRow = document.getElementById(rowId);
+				tableRow.style.setProperty("text-decoration", "line-through");
+				document.getElementById(chkBoxId).checked = true;
+			}
+			else {
+				tableRow = document.getElementById(rowId);
+				tableRow.style.setProperty("text-decoration", "none");
+				document.getElementById(chkBoxId).checked = false;
+			}
+		}
+		
 
 	</script>
 	
@@ -168,7 +184,7 @@
 		<br>
 		<table class="table table-striped" id="itemlst">
 			<tr>
-				<th>Bought</th>
+				<th>Purchased</th>
 				<th>Item</th>
 				<th>Section</th>
 				<th>Quantity</th>

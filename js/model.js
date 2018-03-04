@@ -42,11 +42,18 @@ class ShoppingList {
 
 	addShoppingItem(item) {
 		this.cart.push(item);
-		// calls publish
+		// calls publish?
 	}
 
 	getItems() {
 		return this.cart;
+	}
+
+	remove(rowId) {
+		let index = parseInt(rowId[3]) - 1;
+		if (index > -1) {
+			this.cart.splice(index, 1);
+		}
 	}
 
 	getLength() {
