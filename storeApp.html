@@ -12,54 +12,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet"/>
 
-		<script type="application/javascript" src="js/pubSub.js"></script>
 		<script type="application/javascript" src="js/shoppingController.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
+		<script type="application/javascript" src="js/view.js"></script>
 	</head>
 
 	<script>
 		let pubSub = new Subject();
 		let controller = new ShoppingController(pubSub);
-
-		// view subscribe to shoppingtable, pass table
-		let eventListener = function(scope, msg) {
-			let shoppingList = msg;
-
-			// adding HTML to the page
-			let myTable = document.getElementById("itemlst");
-			// clear table
-			let rowCount = myTable.rows.length;
-			for (let i = rowCount-1; i > 0; i--) {
-				myTable.deleteRow(i);
-			}
-
-			let rowNum = 1;
-			for (let i = 0; i < shoppingList.getLength(); i++) {			
-				let gets = [];
-				gets.push(shoppingList.getItems()[i].getItem());
-				gets.push(shoppingList.getItems()[i].getSection());
-				gets.push(shoppingList.getItems()[i].getQuantity());
-				gets.push(shoppingList.getItems()[i].getStore());
-				gets.push(shoppingList.getItems()[i].getPriority());
-				gets.push(shoppingList.getItems()[i].getPrice());
-
-				let row = myTable.insertRow(rowNum);
-				row.id = "row" + rowNum;
-				let chkBox = document.createElement("input");
-				chkBox.id = "chkBox" + rowNum;
-				chkBox.type = "checkbox";
-				chkBox.checked = false;
-				chkBox.onclick = strikeThrough.bind(chkBox.type, chkBox.id, chkBox.checked, row.id); // ????
-				row.appendChild(chkBox);
-				for (let j = 0; j < 6; j++) {
-					let cell = row.insertCell(j); 
-					cell.innerHTML = gets[j];
-				}
-				rowNum += 1;
-			}
-			
-			document.getElementById("inputForm").reset();
-		}
 
 		// register the listener function with Subject
 		pubSub.subscribe(eventListener);
@@ -75,19 +35,17 @@
 			controller.newItem(spec);
 		}
 
-		// needs to be finished
-		function strikeThrough(chkBoxId, checked, rowId, mouseEvent) { // weird occurance here
-			if (checked == false) {
+		function strikeThrough(chkBoxId, rowId, mouseEvent) { // weird occurance here
+			let  queryId = "#" + chkBoxId;
+			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
-				document.getElementById(chkBoxId).checked = true;
-			}
-			else {
+			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
-				document.getElementById(chkBoxId).checked = false;
 			}
 		}
+		
 	</script>
 	
 	<body>
@@ -161,8 +119,8 @@
 					<option></option>
 					<option value="Co-op">Co-op</option>
 					<option value="Fareway">Fareway</option>
+					<option value="Quillins">Quillins</option>
 					<option value="Walmart">Walmart</option>
-					<option value="Culvers">Culvers</option>
 				</select>
 				
 				<label for="priority">Priority</label>
