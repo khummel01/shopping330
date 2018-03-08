@@ -20,9 +20,10 @@
 	<script>
 		let pubSub = new Subject();
 		let controller = new ShoppingController(pubSub);
+		let view = new View(pubSub);
 
 		// register the listener function with Subject
-		pubSub.subscribe(eventListener);
+		pubSub.subscribe(view);
 
 		function newItem() {
 			let name = document.querySelector("#item").value;

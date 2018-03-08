@@ -6,24 +6,24 @@ class ShoppingController {
 	}
 
 	newItem(itemSpec) {
-		let count = 0;
-		for (const [key, value] of Object.entries(itemSpec)) {
-			if (itemSpec[key] != "") {
-				count += 1;
-			}
-		}
-		if (count == 6) {
+		// let count = 0;
+		// for (const [key, value] of Object.entries(itemSpec)) {
+		// 	if (itemSpec[key] != "") {
+		// 		count += 1;
+		// 	}
+		// }
+		// if (count == 6) {
 			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
 			this.shoppingList.addShoppingItem(item);
 			this.pubSub.publish(this.shoppingList);
-		}
-		else {
-			document.getElementById("inputForm").reset();
-		}
+		// }
+		// else {
+		// 	document.getElementById("inputForm").reset();
+		// }
 	}
 
 	deleteItem(rowId) {
 		this.shoppingList.remove(rowId);
-		this.pubSub.publish(this.shoppingList);
+		// this.pubSub.publish(this.shoppingList);
 	}
 }

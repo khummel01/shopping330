@@ -1,39 +1,39 @@
-let eventListener = function(scope, msg) {
-	let shoppingList = msg;
-	// adding HTML to the page
-	let myTable = document.getElementById("itemlst");
-	// clear table
-	let rowCount = myTable.rows.length;
-	for (let i = rowCount-1; i > 0; i--) {
-		myTable.deleteRow(i);
+"use strict";
+
+class View {
+	constructor(model) {
+		model.subscribe(this.redrawList.bind(this));
 	}
 
-	let rowNum = 1;
-	for (let i = 0; i < shoppingList.getLength(); i++) {			
-		let gets = [];
-		gets.push(shoppingList.getItems()[i].getItem());
-		gets.push(shoppingList.getItems()[i].getSection());
-		gets.push(shoppingList.getItems()[i].getQuantity());
-		gets.push(shoppingList.getItems()[i].getStore());
-		gets.push(shoppingList.getItems()[i].getPriority());
-		gets.push(shoppingList.getItems()[i].getPrice());
-
-		let row = myTable.insertRow(rowNum);
-		row.id = "row" + rowNum;
-		let chkBox = document.createElement("input");
-		chkBox.id = "chkBox" + rowNum;
-		chkBox.type = "checkbox";
-		chkBox.checked = false;
-		chkBox.onclick = strikeThrough.bind(chkBox.type, chkBox.id, row.id);
-		row.appendChild(chkBox);
-		for (let j = 0; j < 6; j++) {
-			let cell = row.insertCell(j); 
-			cell.innerHTML = gets[j];
+	redrawList(shoppingList, msg) {
+		let tbl = document.getElementById("itemlst");
+		// clear table
+		tbl.innerHTML = "";
+		for (let item of shoppingList.newItems) {
+			this.addRow(item, tbl);
 		}
-		rowNum += 1;
+		document.getElementById("inputForm").reset();
 	}
-	
-	document.getElementById("inputForm").reset();
-}
 
+	addRow(item, parent) {
+		// create new row
+		let row = document.createElement("tr");
+		// create checkbox
+		let chkBox = document.createElement("input");
+		chkBox.type = "checkbox";
+		// onclick function for chkBox
+		chkBox.onclick = function() {
+			item.purchased = true;
+		}
+		row.appendChild(chkBox);
+
+		for (let val of ["name", "section", "quantity", "store", "priority", "price"]) {
+			let td = document.createElement("td");
+			td.innerHTML = item[val];
+			row.appendChild(td);
+		}
+		parent.appendChild(row);
+	}
+
+}
 

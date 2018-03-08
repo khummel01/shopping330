@@ -8,6 +8,7 @@ class ShoppingItem {
 		this.store = store;
 		this.priority = priority;
 		this.price = price;
+		this._purchased = false;
 	}
 
 	getItem() {
@@ -32,36 +33,6 @@ class ShoppingItem {
 
 	getPrice() {
 		return this.price;
-	}
-}
-
-class ShoppingList {
-	constructor() {
-		this.cart = [];
-	}
-
-	addShoppingItem(item) {
-		this.cart.push(item);
-		// calls publish?
-	}
-
-	getItems() {
-		return this.cart;
-	}
-
-	remove(rowId) {
-		let index = parseInt(rowId[3]) - 1;
-		if (index > -1) {
-			this.cart.splice(index, 1);
-		}
-	}
-
-	getLength() {
-		let count = 0;
-		for (let i of this.cart) {
-			count += 1;
-		}
-		return count;
 	}
 }
 
@@ -90,5 +61,37 @@ class Subject {
 		for (let fn of this.handlers) {
 			fn(scope, msg);
 		}
+	}
+}
+
+class ShoppingList extends Subject {
+	constructor() {
+		super();
+		this.cart = [];
+		this.oldCart = [];
+	}
+
+	addShoppingItem(item) {
+		this.cart.push(item);
+		this.publish("newitem", this);
+	}
+
+	getItems() {
+		return this.cart;
+	}
+
+	remove(rowId) {
+		let index = parseInt(rowId[3]) - 1;
+		if (index > -1) {
+			this.cart.splice(index, 1);
+		}
+	}
+
+	getLength() {
+		let count = 0;
+		for (let i of this.cart) {
+			count += 1;
+		}
+		return count;
 	}
 }
