@@ -7,7 +7,7 @@ class ShoppingController {
 
 	newItem(itemSpec) {
 		// let count = 0;
-		// for (const [key, value] of Object.entries(itemSpec)) {
+		// for (var key in itemSpec) {
 		// 	if (itemSpec[key] != "") {
 		// 		count += 1;
 		// 	}

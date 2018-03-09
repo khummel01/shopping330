@@ -15,6 +15,8 @@
 		<script type="application/javascript" src="js/shoppingController.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
+		<script type="text/javascript" src="js/sorttable.js"></script>
+
 	</head>
 
 	<script>
@@ -73,82 +75,97 @@
 		<br><br><br>
 		<!-- Form -->
 		<form id= "inputForm" class="form-inline">
-			<div class="form-row">
-				<label for="item">Item</label>
-				<input id="item" type=text style="width: 150px" class="form-control">
+			<div class="container">
+				<div class="panel panel-default col-md-12">
+					<div class="panel-body">
+					<div class="row form-inline">
 
-				<div class="input-group mb-3">
-					<label for="section">Section</label>
-					<select id="sectiondd" class="custom-select">
-						<option></option>
-						<option value="baking">Baking</option>
-						<option value="beverages">Beverages</option>
-						<option value="canned goods">Canned Goods</option>
-						<option value="cereal">Cereal/Breakfast</option>
-						<option value="condiments">Condiments</option>
-						<option value="dairy">Dairy</option>
-						<option value="deli">Deli</option>
-						<option value="frozen">Frozen</option>
-						<option value="meat">Meat</option>
-						<option value="misc">Misc</option>
-						<option value="non-food">Non-Food Items</option>
-						<option value="pasta/rice">Pasta/Rice</option>
-						<option value="produce">Produce</option>
-						<option value="snacks">Snacks</option>
-					</select>
+					<div class="form-group">
+						<label for="item">Item</label>
+						<input id="item" type=text class="form-control"> <!--style="width: 150px"-->
+					</div>
+					<div class="form-group">
+						<label for="section">Section</label>
+						<select id="sectiondd" class="custom-select">
+							<option></option>
+							<option value="baking">Baking</option>
+							<option value="beverages">Beverages</option>
+							<option value="canned goods">Canned Goods</option>
+							<option value="cereal">Cereal/Breakfast</option>
+							<option value="condiments">Condiments</option>
+							<option value="dairy">Dairy</option>
+							<option value="deli">Deli</option>
+							<option value="frozen">Frozen</option>
+							<option value="meat">Meat</option>
+							<option value="misc">Misc</option>
+							<option value="non-food">Non-Food Items</option>
+							<option value="pasta/rice">Pasta/Rice</option>
+							<option value="produce">Produce</option>
+							<option value="snacks">Snacks</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<select id="quantitydd">
+							<option></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="form-group">			
+						<label for="store">Store</label>
+						<select id="storedd">
+							<option></option>
+							<option value="Co-op">Co-op</option>
+							<option value="Fareway">Fareway</option>
+							<option value="Quillins">Quillins</option>
+							<option value="Walmart">Walmart</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="priority">Priority</label>
+						<select id="prioritydd">
+							<option></option>
+							<option value="high">High</option>
+							<option value="medium">Medium</option>
+							<option value="low">Low</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="price">Price</label>
+						<input type=text id="price" style="width: 80px" class="form-control"></input>
+					</div>
+						<button type=button onclick="newItem()" id=gobutt>Add Item</button>
+					</div>
+					</div>
 				</div>
-
-				<label for="quantity">Quantity</label>
-				<select id="quantitydd">
-					<option></option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-								
-				<label for="store">Store</label>
-				<select id="storedd">
-					<option></option>
-					<option value="Co-op">Co-op</option>
-					<option value="Fareway">Fareway</option>
-					<option value="Quillins">Quillins</option>
-					<option value="Walmart">Walmart</option>
-				</select>
-				
-				<label for="priority">Priority</label>
-				<select id="prioritydd">
-					<option></option>
-					<option value="high">High</option>
-					<option value="medium">Medium</option>
-					<option value="low">Low</option>
-				</select>
-
-				<div class="form-group">
-					<label for="price">Price</label>
-					<input type=text id="price" style="width: 80px" class="form-control"></input>
-				</div>
-				<button type=button onclick="newItem()" id=gobutt>Add Item</button>
 			</div>
 		</form>
 		<br>
-		<table class="table table-striped" id="itemlst">
-			<tr>
-				<th>Purchased</th>
-				<th>Item</th>
-				<th>Section</th>
-				<th>Quantity</th>
-				<th>Store</th>
-				<th>Priority</th>
-				<th>Price</th>
-			</tr>
-		</table>
+		<div class="col-md-12">
+			<table class="table table-bordered" id="itemlst">
+				<thead>
+					<tr>
+						<th></th>
+						<th><a href="javascript:SortTable(0, 'T');">Item</a></th>
+						<th><a href="javascript:SortTable(1, 'T');">Section</a></th>
+						<th><a href="javascript:SortTable(2, 'N');">Quantity</a></th>
+						<th><a href="javascript:SortTable(3, 'T');">Store</a></th>
+						<th><a href="javascript:SortTable(4, 'T');">Priority</a></th>
+						<th><a href="javascript:SortTable(4, 'N');">Price</a></th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 
 	</body>
 
