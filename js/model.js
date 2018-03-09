@@ -64,16 +64,14 @@ class Subject {
 	}
 }
 
-class ShoppingList extends Subject {
+class ShoppingList {
 	constructor() {
-		super();
 		this.cart = [];
 		this.oldCart = [];
 	}
 
 	addShoppingItem(item) {
 		this.cart.push(item);
-		this.publish("newitem", this);
 	}
 
 	getItems() {

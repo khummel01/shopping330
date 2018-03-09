@@ -15,7 +15,7 @@ class ShoppingController {
 		// if (count == 6) {
 			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
 			this.shoppingList.addShoppingItem(item);
-			this.pubSub.publish(this.shoppingList);
+			this.pubSub.publish("newitem", this.shoppingList);
 		// }
 		// else {
 		// 	document.getElementById("inputForm").reset();
