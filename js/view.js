@@ -26,6 +26,7 @@ class View {
 
 			let row = tbl.insertRow(rowNum);
 			row.id = "row" + rowNum;
+			row.className = "tableEntry";
 			let chkBox = document.createElement("input");
 			chkBox.id = "chkBox" + rowNum;
 			chkBox.type = "checkbox";

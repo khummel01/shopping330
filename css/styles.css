@@ -4,6 +4,12 @@ body {
 	font-family:'Montserrat', sans-serif;
 }
 
-/*header {
-	font-family: ;
-}*/
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+th {
+	text-align: center;
+	vertical-align: middle;
+}

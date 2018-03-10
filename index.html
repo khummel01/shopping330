@@ -10,20 +10,18 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<script src="https://www.w3schools.com/lib/w3.js"></script>
 		<link href="css/styles.css" rel="stylesheet"/>
 
 		<script type="application/javascript" src="js/shoppingController.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
-		<script type="text/javascript" src="js/sorttable.js"></script>
-
 	</head>
 
 	<script>
 		let pubSub = new Subject();
 		let controller = new ShoppingController(pubSub);
 		let view = new View(pubSub);
-		pubSub.subscribe(view);
 
 		function newItem() {
 			let name = document.querySelector("#item").value;
@@ -41,12 +39,12 @@
 			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
+				controller.deleteItem(rowId);
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
 		}
-		
 	</script>
 	
 	<body>
@@ -150,23 +148,22 @@
 			</div>
 		</form>
 		<br>
-		<div class="col-md-12">
+		<div class="col-md-12" style="text-align: center;">
 			<table class="table table-bordered" id="itemlst">
 				<thead>
 					<tr>
 						<th></th>
-						<th><a href="javascript:SortTable(0, 'T');">Item</a></th>
-						<th><a href="javascript:SortTable(1, 'T');">Section</a></th>
-						<th><a href="javascript:SortTable(2, 'N');">Quantity</a></th>
-						<th><a href="javascript:SortTable(3, 'T');">Store</a></th>
-						<th><a href="javascript:SortTable(4, 'T');">Priority</a></th>
-						<th><a href="javascript:SortTable(4, 'N');">Price</a></th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(2)')" style="cursor:pointer">Item</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(3)')" style="cursor:pointer">Section</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(4)')" style="cursor:pointer">Quantity</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(5)')" style="cursor:pointer">Store</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(6)')" style="cursor:pointer">Priority</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(7)')" style="cursor:pointer">Price</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
 			</table>
 		</div>
-
 	</body>
 
 </html>
