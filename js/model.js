@@ -78,7 +78,7 @@ class ShoppingList {
 		return this.cart;
 	}
 
-	remove(rowId) { // fix parsing row id
+	remove(rowId) { 
 		let index = parseInt(rowId[3]) - 1;
 		if (index > -1) {
 			this.cart.splice(index, 1);
