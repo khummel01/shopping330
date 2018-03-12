@@ -10,6 +10,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<script src="https://www.w3schools.com/lib/w3.js"></script>
 		<link href="css/styles.css" rel="stylesheet"/>
 
 		<script type="application/javascript" src="js/shoppingController.js"></script>
@@ -19,11 +20,8 @@
 
 	<script>
 		let pubSub = new Subject();
-		let controller = new ShoppingController(pubSub);
-
-		// register the listener function with Subject
-		pubSub.subscribe(eventListener);
-
+		var controller = new ShoppingController(pubSub);
+		let view = new View(pubSub);
 		function newItem() {
 			let name = document.querySelector("#item").value;
 			let section = document.querySelector("#sectiondd").value;
@@ -33,19 +31,38 @@
 			let price = document.querySelector("#price").value;
 			let spec = {"name": name, "section": section, "quantity": quantity, "store": store, "priority": priority, "price": price};
 			controller.newItem(spec);
+			saveData();
 		}
-
 		function strikeThrough(chkBoxId, rowId, mouseEvent) { // weird occurance here
 			let  queryId = "#" + chkBoxId;
 			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
+				controller.deleteItem(rowId);
+				saveData();
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
 		}
-		
+		function saveData() {
+			let shoppingListObj = controller.shoppingList;
+			let shoppingCart = [];
+			nextDict = {};
+			let namesDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"};
+			for (let i = 0; i < shoppingListObj.getLength(); i++) {
+				let item = shoppingListObj.getItems()[i];
+				nextDict["name"] = item.getItem();
+				nextDict["section"] = item.getSection();
+				nextDict["quantity"] = item.getQuantity();
+				nextDict["store"] = item.getStore();
+				nextDict["priority"] = item.getPriority();
+				nextDict["price"] = item.getPrice();
+				shoppingCart.push(nextDict);
+				nextDict = {};
+			}
+			localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+		}
 	</script>
 	
 	<body>
@@ -74,83 +91,97 @@
 		<br><br><br>
 		<!-- Form -->
 		<form id= "inputForm" class="form-inline">
-			<div class="form-row">
-				<label for="item">Item</label>
-				<input id="item" type=text style="width: 150px" class="form-control">
+			<div class="container">
+				<div class="panel panel-default col-md-12">
+					<div class="panel-body">
+					<div class="row form-inline">
 
-				<div class="input-group mb-3">
-					<label for="section">Section</label>
-					<select id="sectiondd" class="custom-select">
-						<option></option>
-						<option value="baking">Baking</option>
-						<option value="beverages">Beverages</option>
-						<option value="canned goods">Canned Goods</option>
-						<option value="cereal">Cereal/Breakfast</option>
-						<option value="condiments">Condiments</option>
-						<option value="dairy">Dairy</option>
-						<option value="deli">Deli</option>
-						<option value="frozen">Frozen</option>
-						<option value="meat">Meat</option>
-						<option value="misc">Misc</option>
-						<option value="non-food">Non-Food Items</option>
-						<option value="pasta/rice">Pasta/Rice</option>
-						<option value="produce">Produce</option>
-						<option value="snacks">Snacks</option>
-					</select>
+					<div class="form-group">
+						<label for="item">Item</label>
+						<input id="item" type=text class="form-control"> <!--style="width: 150px"-->
+					</div>
+					<div class="form-group">
+						<label for="section">Section</label>
+						<select id="sectiondd" class="custom-select">
+							<option></option>
+							<option value="baking">Baking</option>
+							<option value="beverages">Beverages</option>
+							<option value="canned goods">Canned Goods</option>
+							<option value="cereal">Cereal/Breakfast</option>
+							<option value="condiments">Condiments</option>
+							<option value="dairy">Dairy</option>
+							<option value="deli">Deli</option>
+							<option value="frozen">Frozen</option>
+							<option value="meat">Meat</option>
+							<option value="misc">Misc</option>
+							<option value="non-food">Non-Food Items</option>
+							<option value="pasta/rice">Pasta/Rice</option>
+							<option value="produce">Produce</option>
+							<option value="snacks">Snacks</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<select id="quantitydd">
+							<option></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="form-group">			
+						<label for="store">Store</label>
+						<select id="storedd">
+							<option></option>
+							<option value="Co-op">Co-op</option>
+							<option value="Fareway">Fareway</option>
+							<option value="Quillins">Quillins</option>
+							<option value="Walmart">Walmart</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="priority">Priority</label>
+						<select id="prioritydd">
+							<option></option>
+							<option value="high">High</option>
+							<option value="medium">Medium</option>
+							<option value="low">Low</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="price">Price</label>
+						<input type=text id="price" style="width: 80px" class="form-control"></input>
+					</div>
+						<button type=button onclick="newItem()" id=gobutt>Add Item</button>
+					</div>
+					</div>
 				</div>
-
-				<label for="quantity">Quantity</label>
-				<select id="quantitydd">
-					<option></option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-								
-				<label for="store">Store</label>
-				<select id="storedd">
-					<option></option>
-					<option value="Co-op">Co-op</option>
-					<option value="Fareway">Fareway</option>
-					<option value="Quillins">Quillins</option>
-					<option value="Walmart">Walmart</option>
-				</select>
-				
-				<label for="priority">Priority</label>
-				<select id="prioritydd">
-					<option></option>
-					<option value="high">High</option>
-					<option value="medium">Medium</option>
-					<option value="low">Low</option>
-				</select>
-
-				<div class="form-group">
-					<label for="price">Price</label>
-					<input type=text id="price" style="width: 80px" class="form-control"></input>
-				</div>
-				<button type=button onclick="newItem()" id=gobutt>Add Item</button>
 			</div>
 		</form>
 		<br>
-		<table class="table table-striped" id="itemlst">
-			<tr>
-				<th>Purchased</th>
-				<th>Item</th>
-				<th>Section</th>
-				<th>Quantity</th>
-				<th>Store</th>
-				<th>Priority</th>
-				<th>Price</th>
-			</tr>
-		</table>
-
+		<div class="col-md-12" style="text-align: center;">
+			<table class="table table-bordered" id="itemlst">
+				<thead>
+					<tr>
+						<th></th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(2)')" style="cursor:pointer">Item</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(3)')" style="cursor:pointer">Section</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(4)')" style="cursor:pointer">Quantity</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(5)')" style="cursor:pointer">Store</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(6)')" style="cursor:pointer">Priority</th>
+						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(7)')" style="cursor:pointer">Price</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 	</body>
 
 </html>
