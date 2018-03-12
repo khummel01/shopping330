@@ -32,6 +32,7 @@
 			let price = document.querySelector("#price").value;
 			let spec = {"name": name, "section": section, "quantity": quantity, "store": store, "priority": priority, "price": price};
 			controller.newItem(spec);
+			saveData();
 		}
 
 		function strikeThrough(chkBoxId, rowId, mouseEvent) { // weird occurance here
@@ -40,14 +41,30 @@
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
 				controller.deleteItem(rowId);
+				saveData();
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
+		}
 
-		// let shoppingListObj = controller.shoppingList;
-		// console.log(shoppingListObj);
-
+		function saveData() {
+			let shoppingListObj = controller.shoppingList;
+			let shoppingCart = [];
+			nextDict = {};
+			let namesDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"};
+			for (let i = 0; i < shoppingListObj.getLength(); i++) {
+				let item = shoppingListObj.getItems()[i];
+				nextDict["name"] = item.getItem();
+				nextDict["section"] = item.getSection();
+				nextDict["quantity"] = item.getQuantity();
+				nextDict["store"] = item.getStore();
+				nextDict["priority"] = item.getPriority();
+				nextDict["price"] = item.getPrice();
+				shoppingCart.push(nextDict);
+				nextDict = {};
+			}
+			localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
 		}
 	</script>
 	
@@ -168,38 +185,6 @@
 				<tbody></tbody>
 			</table>
 		</div>
-	<script>
-		local storage via iterating through table element
-		// let tbl = document.getElementById("itemlst");
-		// let shoppingCart = [];
-		// let colNameDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"}; 
-		// for (var r = 1, n = tbl.rows.length; r < n; r++) {
-		// 	nextDict = {};
-		// 	for (var c = 1, m = tbl.rows[r].cells.length; c < m; c++) {
-		// 		nextDict[colNameDict[c]] = tbl.rows[r].col[c].innerHTML;
-		// 	}
-		// 	shoppingCart.append(nextDict);
-		// 	// console.log(nextDict);
-		// }
-		// localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-
-		// local storage via the controller obj
-		let shoppingListObj = controller.shoppingList;
-		let shoppingCart = [];
-		nextDict = {};
-		let namesDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"};
-		for (let i = 0; i < shoppingListObj.getLength(), i++) {
-			let item = shoppingListObj[i];
-			nextDict[namesDict[i+1]] = item.getItem();
-			nextDict[namesDict[i+2]] = item.getSection();
-			nextDict[namesDict[i+3]] = item.getQuantity();
-			nextDict[namesDict[i+4]] = item.getStore();
-			nextDict[namesDict[i+5]] = item.getPriority();
-			nextDict[namesDict[i+6]] = item.getPrice();
-			shoppingCart.append(nextDict);
-			nextDict = {};
-		}
-	</script>
 	</body>
 
 </html>
