@@ -14,6 +14,7 @@ class Controller {
 			// }
 		// }
 		// if (count == 6) {
+			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
 			this.shoppingList.addShoppingItem(item);
 			this.pubSub.publish("newitem", this.shoppingList);
 		// }
