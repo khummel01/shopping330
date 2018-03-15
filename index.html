@@ -19,9 +19,9 @@
 	</head>
 
 	<script>
-		let pubSub = new Subject();
-		var controller = new ShoppingController(pubSub);
-		let view = new View(pubSub);
+		var shoppingModel = new ShoppingList()
+		var myView = new ShoppingView(shoppingModel)
+		var myDB = new LocalStorageSaver(shoppingModel, "bradslst")
 
 		function newItem() {
 			let name = document.querySelector("#item").value;
