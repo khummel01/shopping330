@@ -13,15 +13,16 @@
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
 		<link href="css/styles.css" rel="stylesheet"/>
 
-		<script type="application/javascript" src="js/shoppingController.js"></script>
+		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
 	</head>
 
 	<script> 
-		let pubSub = new Subject();
-		var controller = new ShoppingController(pubSub);
-		let view = new View(pubSub);
+		var pubSub = new Subject();
+		var controller = new Controller(pubSub);
+		var view = new View(pubSub);
+		var storage = new LocalStorageSaver(pubSub);
 
 		function newItem() {
 			let name = document.querySelector("#item").value;
