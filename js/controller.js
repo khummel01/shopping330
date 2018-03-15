@@ -1,6 +1,6 @@
 "use strict";
 
-class ShoppingController {
+class Controller {
 	constructor(pubSub) {
 		this.pubSub = pubSub;
 		this.shoppingList = new ShoppingList();
@@ -14,8 +14,12 @@ class ShoppingController {
 			// }
 		// }
 		// if (count == 6) {
+<<<<<<< HEAD:js/controller.js
 			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], 
 				itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
+=======
+			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
+>>>>>>> jsonclass:js/controller.js
 			this.shoppingList.addShoppingItem(item);
 			this.pubSub.publish("newitem", this.shoppingList);
 		// }

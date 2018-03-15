@@ -16,13 +16,14 @@
 		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
+		<script type="application/javascript" src="js/localstoragesaver.js"></script>
 	</head>
 
-	<script> 
+	<script>
 		var pubSub = new Subject();
 		var controller = new Controller(pubSub);
 		var view = new View(pubSub);
-		var storage = new LocalStorageSaver(pubSub);
+		var storage = new LocalStorageSaver(pubSub)
 
 		function newItem() {
 			let name = document.querySelector("#item").value;
@@ -33,7 +34,6 @@
 			let price = document.querySelector("#price").value;
 			let spec = {"name": name, "section": section, "quantity": quantity, "store": store, "priority": priority, "price": price};
 			controller.newItem(spec);
-			saveData();
 		}
 
 		function strikeThrough(chkBoxId, rowId, mouseEvent) { // weird occurance here
@@ -42,30 +42,10 @@
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
 				controller.deleteItem(rowId);
-				saveData();
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
-		}
-
-		function saveData() {
-			let shoppingListObj = controller.shoppingList;
-			let shoppingCart = [];
-			nextDict = {};
-			let namesDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"};
-			for (let i = 0; i < shoppingListObj.getLength(); i++) {
-				let item = shoppingListObj.getItems()[i];
-				nextDict["name"] = item.getItem();
-				nextDict["section"] = item.getSection();
-				nextDict["quantity"] = item.getQuantity();
-				nextDict["store"] = item.getStore();
-				nextDict["priority"] = item.getPriority();
-				nextDict["price"] = item.getPrice();
-				shoppingCart.push(nextDict);
-				nextDict = {};
-			}
-			localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
 		}
 	</script>
 	
