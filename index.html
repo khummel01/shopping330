@@ -5,14 +5,15 @@
 		<meta charset="utf-8"> 
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
+		
 		<link href="css/styles.css" rel="stylesheet"/>
-
 		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
@@ -40,29 +41,17 @@
 			let  queryId = "#" + chkBoxId;
 			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
-				tableRow.style.setProperty("text-decoration", "line-through");
-				let s = tableRow.style;
-				s.opacity = 1;
-				<!-- (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,50)})(); -->
-				controller.deleteItem(rowId);
+				<!-- tableRow.style.borderBottom = "3px solid #111"; -->
+				<!-- tableRow.style.width = "300px"; -->
+				<!-- let s = tableRow.style; -->
+				<!-- s.opacity = 1; -->
+				<!-- (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,60)})(); -->
+				<!-- controller.deleteItem(rowId); -->
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
 		}
-		
-		<!-- function fadeOutEffect(tableRow) { -->
-			<!-- var fadeTarget = tableRow; -->
-			<!-- var fadeEffect = setInterval(function () { -->
-				<!-- if (!fadeTarget.style.opacity) { -->
-					<!-- fadeTarget.style.opacity = 1; -->
-				<!-- } -->
-				<!-- if (fadeTarget.style.opacity < 0.1) { -->
-					<!-- clearInterval(fadeEffect); -->
-				<!-- } else { -->
-					<!-- fadeTarget.style.opacity -= 0.1; -->
-				<!-- } -->
-			<!-- }, 200); -->
 		
 	</script>
 	
@@ -85,7 +74,7 @@
 			<!-- Card body -->
 			<div class="card-body">
 			<h1 class="card-title">CS330 Shopping App</h1>
-			<h3 class="card-text">Let's shop!</h3>
+			<!-- <h3 class="card-text">Let's shop!</h3> -->
 			<a href="#" class="btn btn-primary">Learn More</a>
 			</div>
 		</div>
@@ -99,7 +88,7 @@
 
 					<div class="form-group">
 						<label for="item">Item</label>
-						<input id="item" type=text class="form-control"> <!--style="width: 150px"-->
+						<input id="item" type=text class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="section">Section</label>
@@ -168,7 +157,7 @@
 		</form>
 		<br>
 		<div class="col-md-12" style="text-align: center;">
-			<table class="table table-bordered" id="itemlst">
+			<table class="table table-hover" id="itemlst">
 				<thead>
 					<tr>
 						<th></th>
@@ -183,6 +172,9 @@
 				<tbody></tbody>
 			</table>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	</body>
 
 </html>
