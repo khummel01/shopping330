@@ -3,16 +3,12 @@
 	<head>
 		<title>Class Store App</title>
 		<meta charset="utf-8"> 
-
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
-		
 		<link href="css/styles.css" rel="stylesheet"/>
 		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
@@ -56,108 +52,93 @@
 	</script>
 	
 	<body>
-		<!-- Navigation -->
-		<div class="card text-center">
-			<div class="card-header">
-			    <ul class="nav nav-pills card-header-pills">
-			     	<li class="nav-item">
-			        	<a class="nav-link active" href="#">Active</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="#">Link</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link disabled" href="#">Disabled</a>
-			    	</li>
-			    </ul>
-			  </div>
-			<!-- Card body -->
-			<div class="card-body">
-			<h1 class="card-title">CS330 Shopping App</h1>
-			<!-- <h3 class="card-text">Let's shop!</h3> -->
-			<a href="#" class="btn btn-primary">Learn More</a>
-			</div>
-		</div>
+		<!-- Nav -->
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+			<a class="nav-link active" href="#">Active</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Link</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Link</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link disabled" href="#">Disabled</a>
+		  </li>
+		</ul>
 		<br><br><br>
 		<!-- Form -->
-		<form id= "inputForm" class="form-inline">
+		<form>
 			<div class="container">
 				<div class="panel panel-default col-md-12">
-					<div class="panel-body">
-					<div class="row form-inline">
-
-					<div class="form-group">
-						<label for="item">Item</label>
-						<input id="item" type=text class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="section">Section</label>
-						<select id="sectiondd" class="custom-select">
-							<option></option>
-							<option value="baking">Baking</option>
-							<option value="beverages">Beverages</option>
-							<option value="canned goods">Canned Goods</option>
-							<option value="cereal">Cereal/Breakfast</option>
-							<option value="condiments">Condiments</option>
-							<option value="dairy">Dairy</option>
-							<option value="deli">Deli</option>
-							<option value="frozen">Frozen</option>
-							<option value="meat">Meat</option>
-							<option value="misc">Misc</option>
-							<option value="non-food">Non-Food Items</option>
-							<option value="pasta/rice">Pasta/Rice</option>
-							<option value="produce">Produce</option>
-							<option value="snacks">Snacks</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="quantity">Quantity</label>
-						<select id="quantitydd">
-							<option></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<div class="form-group">			
-						<label for="store">Store</label>
-						<select id="storedd">
-							<option></option>
-							<option value="Co-op">Co-op</option>
-							<option value="Fareway">Fareway</option>
-							<option value="Quillins">Quillins</option>
-							<option value="Walmart">Walmart</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="priority">Priority</label>
-						<select id="prioritydd">
-							<option></option>
-							<option value="high">High</option>
-							<option value="medium">Medium</option>
-							<option value="low">Low</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="price">Price</label>
-						<input type=text id="price" style="width: 80px" class="form-control"></input>
-					</div>
-						<button type=button onclick="newItem()" id=gobutt>Add Item</button>
-					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="item">Item</label>
+							<input class="form-control" id="item" placeholder="Item">
+						</div>
+						<div class="form-group col-md-2">
+							<label for="section">Section</label>
+							<select id="sectiondd" class="form-control">
+								<option></option>
+								<option value="baking">Baking</option>
+								<option value="beverages">Beverages</option>
+								<option value="canned goods">Canned Goods</option>
+								<option value="cereal">Cereal/Breakfast</option>
+								<option value="condiments">Condiments</option>
+								<option value="dairy">Dairy</option>
+								<option value="deli">Deli</option>
+								<option value="frozen">Frozen</option>
+								<option value="meat">Meat</option>
+								<option value="misc">Misc</option>
+								<option value="non-food">Non-Food Items</option>
+								<option value="pasta/rice">Pasta/Rice</option>
+								<option value="produce">Produce</option>
+								<option value="snacks">Snacks</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="quantity">Quantity</label>
+							<input type="text" class="form-control" id="quantitydd" placeholder="Quantity">
+						</div>
+					<!-- <div class="form-group"> -->
+						<!-- <label for="inputAddress2">Address 2</label> -->
+						<!-- <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"> -->
+					<!-- </div> -->
+					  <!-- <div class="form-row"> -->
+						<!-- <div class="form-group col-md-6"> -->
+						  <!-- <label for="inputCity">City</label> -->
+						  <!-- <input type="text" class="form-control" id="inputCity"> -->
+						<!-- </div> -->
+						<!-- <div class="form-group col-md-4"> -->
+						  <!-- <label for="inputState">State</label> -->
+						  <!-- <select id="inputState" class="form-control"> -->
+							<!-- <option selected>Choose...</option> -->
+							<!-- <option>...</option> -->
+						  <!-- </select> -->
+						<!-- </div> -->
+						<!-- <div class="form-group col-md-2"> -->
+						  <!-- <label for="inputZip">Zip</label> -->
+						  <!-- <input type="text" class="form-control" id="inputZip"> -->
+						<!-- </div> -->
+					  <!-- </div> -->
+					  <!-- <div class="form-group"> -->
+						<!-- <div class="form-check"> -->
+						  <!-- <input class="form-check-input" type="checkbox" id="gridCheck"> -->
+						  <!-- <label class="form-check-label" for="gridCheck"> -->
+							<!-- Check me out -->
+						  <!-- </label> -->
+						<!-- </div> -->
+					  <!-- </div> -->
+					  <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+						<!-- </div> -->
 					</div>
 				</div>
 			</div>
 		</form>
 		<br>
 		<div class="col-md-12" style="text-align: center;">
-			<table class="table table-hover" id="itemlst">
+			<table class="table table-bordered" id="itemlst">
 				<thead>
 					<tr>
 						<th></th>
@@ -172,9 +153,9 @@
 				<tbody></tbody>
 			</table>
 		</div>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 	</body>
 
 </html>
