@@ -16,5 +16,14 @@ th {
  
 .checkBox {
 	position: relative;
-    top: 9px;
+    top: 15px;
 }
+
+#buttonPosition {
+    padding: 30px;
+}
+
+
+/* border-style: solid; */
+/* border-color: #A0A0A0; */
+/* border-width: thin; */
