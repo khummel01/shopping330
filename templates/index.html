@@ -9,13 +9,11 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-		<!-- Needed for column sorting feature -->
-		<script src="https://www.w3schools.com/lib/w3.js"></script>
-		<link href="css/styles.css" rel="stylesheet"/>
-		<script type="application/javascript" src="js/controller.js"></script>
-		<script type="application/javascript" src="js/model.js"></script>
-		<script type="application/javascript" src="js/view.js"></script>
-		<script type="application/javascript" src="js/localstoragesaver.js"></script>
+		<link href="../static/css/styles.css" rel="stylesheet"/>
+		<script type="application/javascript" src="../static/js/controller.js"></script>
+		<script type="application/javascript" src="../static/js/model.js"></script>
+		<script type="application/javascript" src="../static/js/view.js"></script>
+		<script type="application/javascript" src="../static/js/localstoragesaver.js"></script>
 	</head>
 
 	<script>
@@ -40,11 +38,14 @@
 			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
-				<!-- tableRow.style.borderBottom = "3px solid #111"; -->
-				<!-- tableRow.style.width = "300px"; -->
-				let s = tableRow.style;
-				s.opacity = 1;
-				let fade = function() {
+				// tableRow.style.borderBottom = "3px solid #111";
+				// tableRow.style.width = "300px";
+				// let s = tableRow.style;
+				// s.opacity = 1;
+				var fade = function() {
+					$("chkBoxId").click(function(){
+					    $("rowId").fadeOut();
+					});
 					if (document.querySelector(queryId).checked != false)
 						controller.deleteItem(rowId);
 				}
@@ -59,7 +60,6 @@
 		function clearTable() {
 			controller.clearTable();
 		}
-		
 	</script>
 	
 	<body>
@@ -159,7 +159,7 @@
 		</form>
 		<br>
 		<!-- Table -->
-		<div class="container">
+		<div class="container" id="divTable">
 			<div class="col-md-12" style="text-align: center;">
 				<table class="table table-bordered" id="itemlst">
 					<thead>
@@ -191,6 +191,8 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- Needed for column sorting feature -->
+		<script src="https://www.w3schools.com/lib/w3.js"></script>
 	</body>
 
 </html>
