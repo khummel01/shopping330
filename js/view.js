@@ -26,14 +26,21 @@ class View {
 
 			let row = tbl.insertRow(rowNum);
 			row.id = "row" + rowNum;
-			row.className = "tableEntry";
 			let chkBox = document.createElement("input");
 			chkBox.id = "chkBox" + rowNum;
 			chkBox.type = "checkbox";
 			chkBox.checked = false;
+			chkBox.className = "checkBox";
 			chkBox.onclick = strikeThrough.bind(chkBox.type, chkBox.id, row.id);
 			row.appendChild(chkBox);
 			for (let j = 0; j < 6; j++) {
+				if (j == 4 && gets[j] == "low") {
+					row.className = "tableEntry table-success";
+				} else if (j == 4 && gets[j] == "medium") {
+					row.className = "tableEntry table-warning";
+				} else if (j == 4 && gets[j] == "high") {
+					row.className = "tableEntry table-danger";
+				}				
 				let cell = row.insertCell(j); 
 				cell.innerHTML = gets[j];
 			}

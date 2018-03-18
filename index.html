@@ -3,16 +3,15 @@
 	<head>
 		<title>Class Store App</title>
 		<meta charset="utf-8"> 
-
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- Needed for priority coloring -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<!-- Needed for column sorting feature -->
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
 		<link href="css/styles.css" rel="stylesheet"/>
-
 		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
@@ -23,7 +22,7 @@
 		var pubSub = new Subject();
 		var controller = new Controller(pubSub);
 		var view = new View(pubSub);
-		var storage = new LocalStorageSaver(pubSub)
+		var storage = new LocalStorageSaver(pubSub);
 
 		function newItem() {
 			let name = document.querySelector("#item").value;
@@ -41,131 +40,149 @@
 			if (document.querySelector(queryId).checked == true) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "line-through");
-				controller.deleteItem(rowId);
+				<!-- tableRow.style.borderBottom = "3px solid #111"; -->
+				<!-- tableRow.style.width = "300px"; -->
+				let s = tableRow.style;
+				s.opacity = 1;
+				let fade = function() {
+					if (document.querySelector(queryId).checked != false)
+						controller.deleteItem(rowId);
+				}
+				setTimeout(fade, 900);
+
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
 			}
 		}
+		
 	</script>
 	
 	<body>
-		<!-- Navigation -->
-		<div class="card text-center">
-			<div class="card-header">
-			    <ul class="nav nav-pills card-header-pills">
-			     	<li class="nav-item">
-			        	<a class="nav-link active" href="#">Active</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="#">Link</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link disabled" href="#">Disabled</a>
-			    	</li>
-			    </ul>
-			  </div>
-			<!-- Card body -->
-			<div class="card-body">
-			<h1 class="card-title">CS330 Shopping App</h1>
-			<h3 class="card-text">Let's shop!</h3>
-			<a href="#" class="btn btn-primary">Learn More</a>
-			</div>
-		</div>
+		<!-- Nav -->
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+			<a class="nav-link active" href="#">Home</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Page 1</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Page 2</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Page 3</a>
+		  </li>
+		</ul>
 		<br><br><br>
 		<!-- Form -->
-		<form id= "inputForm" class="form-inline">
+		<form id="inputForm">
 			<div class="container">
 				<div class="panel panel-default col-md-12">
-					<div class="panel-body">
-					<div class="row form-inline">
-
-					<div class="form-group">
-						<label for="item">Item</label>
-						<input id="item" type=text class="form-control"> <!--style="width: 150px"-->
-					</div>
-					<div class="form-group">
-						<label for="section">Section</label>
-						<select id="sectiondd" class="custom-select">
-							<option></option>
-							<option value="baking">Baking</option>
-							<option value="beverages">Beverages</option>
-							<option value="canned goods">Canned Goods</option>
-							<option value="cereal">Cereal/Breakfast</option>
-							<option value="condiments">Condiments</option>
-							<option value="dairy">Dairy</option>
-							<option value="deli">Deli</option>
-							<option value="frozen">Frozen</option>
-							<option value="meat">Meat</option>
-							<option value="misc">Misc</option>
-							<option value="non-food">Non-Food Items</option>
-							<option value="pasta/rice">Pasta/Rice</option>
-							<option value="produce">Produce</option>
-							<option value="snacks">Snacks</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="quantity">Quantity</label>
-						<select id="quantitydd">
-							<option></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<div class="form-group">			
-						<label for="store">Store</label>
-						<select id="storedd">
-							<option></option>
-							<option value="Co-op">Co-op</option>
-							<option value="Fareway">Fareway</option>
-							<option value="Quillins">Quillins</option>
-							<option value="Walmart">Walmart</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="priority">Priority</label>
-						<select id="prioritydd">
-							<option></option>
-							<option value="high">High</option>
-							<option value="medium">Medium</option>
-							<option value="low">Low</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="price">Price</label>
-						<input type=text id="price" style="width: 80px" class="form-control"></input>
-					</div>
-						<button type=button onclick="newItem()" id=gobutt>Add Item</button>
-					</div>
+					<div class="form-row">
+						<div class="form-group col-md-5">
+							<label for="item">Item</label>
+							<input class="form-control" id="item" placeholder="Item">
+						</div>
+						<div class="form-group col-md-2">
+							<label for="section">Section</label>
+							<select id="sectiondd" class="form-control">
+								<option></option>
+								<option value="baking">Baking</option>
+								<option value="beverages">Beverages</option>
+								<option value="canned goods">Canned Goods</option>
+								<option value="cereal">Cereal/Breakfast</option>
+								<option value="condiments">Condiments</option>
+								<option value="dairy">Dairy</option>
+								<option value="deli">Deli</option>
+								<option value="frozen">Frozen</option>
+								<option value="meat">Meat</option>
+								<option value="misc">Misc</option>
+								<option value="non-food">Non-Food Items</option>
+								<option value="pasta/rice">Pasta/Rice</option>
+								<option value="produce">Produce</option>
+								<option value="snacks">Snacks</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="quantity">Quantity</label>
+							<select id="quantitydd" class="form-control">
+								<option></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="store">Store</label>
+							<select id="storedd" class="form-control">
+								<option></option>
+								<option value="Co-op">Co-op</option>
+								<option value="Fareway">Fareway</option>
+								<option value="Quillins">Quillins</option>
+								<option value="Walmart">Walmart</option>
+							</select>
+						</div>
+					    <div class="form-group col-md-2">
+							<label for="priority">Priority</label>
+							<select id="prioritydd" class="form-control">
+								<option></option>
+								<option value="high">High</option>
+								<option value="medium">Medium</option>
+								<option value="low">Low</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="price">Price</label>
+							<input class="form-control" id="price" placeholder="Price">
+						</div>
+						<div class="form-inline" style="float: right;" id="buttonPosition">
+							<button class="btn btn-primary" onclick="newItem()" id="gobutton">Add Item</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</form>
 		<br>
-		<div class="col-md-12" style="text-align: center;">
-			<table class="table table-bordered" id="itemlst">
-				<thead>
-					<tr>
-						<th></th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(2)')" style="cursor:pointer">Item</th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(3)')" style="cursor:pointer">Section</th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(4)')" style="cursor:pointer">Quantity</th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(5)')" style="cursor:pointer">Store</th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(6)')" style="cursor:pointer">Priority</th>
-						<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(7)')" style="cursor:pointer">Price</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+		<!-- Table -->
+		<div class="container">
+			<div class="col-md-12" style="text-align: center;">
+				<table class="table table-bordered" id="itemlst">
+					<thead>
+						<tr>
+							<th></th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(2)')" style="cursor:pointer">Item</th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(3)')" style="cursor:pointer">Section</th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(4)')" style="cursor:pointer">Quantity</th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(5)')" style="cursor:pointer">Store</th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(6)')" style="cursor:pointer">Priority</th>
+							<th onclick="w3.sortHTML('#itemlst', '.tableEntry', 'td:nth-child(7)')" style="cursor:pointer">Price</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
+		<!-- Footer -->
+		<footer class="panel-footer">
+			<!--Copyright-->
+			<div class="text-center">
+				© 2018 Copyright:
+				<a href="http://www.luther.edu/" id="lc-link"><u>Luther College</u></a>
+			</div>
+		</footer>
+		
+		<!-- Others scripts -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	</body>
 
 </html>

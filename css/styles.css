@@ -4,12 +4,60 @@ body {
 	font-family:'Montserrat', sans-serif;
 }
 
-td {
+td { 
 	text-align: center;
-	vertical-align: middle;
+	vertical-align: middle; 
 }
 
 th {
-	text-align: center;
-	vertical-align: middle;
+	text-align: center; 
+	vertical-align: middle; 
+ }
+ 
+.checkBox {
+	position: relative;
+    top: 15px;
 }
+
+#buttonPosition {
+    padding: 30px;
+}
+
+.m-fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.panel-footer{
+    background: #4285F4;
+    color: white;
+	padding: 22px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#lc-link {
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
