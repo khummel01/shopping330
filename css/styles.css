@@ -23,7 +23,41 @@ th {
     padding: 30px;
 }
 
+.m-fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
 
-/* border-style: solid; */
-/* border-color: #A0A0A0; */
-/* border-width: thin; */
+.panel-footer{
+    background: #4285F4;
+    color: white;
+	padding: 22px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#lc-link {
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
