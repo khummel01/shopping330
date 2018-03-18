@@ -92,4 +92,8 @@ class ShoppingList {
 		}
 		return count;
 	}
+	
+	clear() {
+		this.cart = [];
+	}
 }

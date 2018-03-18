@@ -19,9 +19,13 @@ th {
     top: 15px;
 }
 
-#buttonPosition {
+#addBttnPosition {
     padding: 30px;
 }
+
+/* #removeAllBttn { */
+	/* padding: 4 */
+/* } */
 
 .m-fadeOut {
     visibility: hidden;
@@ -32,8 +36,8 @@ th {
 .panel-footer{
     background: #4285F4;
     color: white;
-	padding: 22px;
-	position: absolute;
+	padding: 10px;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 }
