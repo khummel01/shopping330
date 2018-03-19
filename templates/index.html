@@ -42,15 +42,9 @@
 				// tableRow.style.width = "300px";
 				// let s = tableRow.style;
 				// s.opacity = 1;
-				var fade = function() {
-					$("chkBoxId").click(function(){
-					    $("rowId").fadeOut();
-					});
+				$("#rowId").fadeOut(5000);
 					if (document.querySelector(queryId).checked != false)
 						controller.deleteItem(rowId);
-				}
-				setTimeout(fade, 900);
-
 			} else if (document.querySelector(queryId).checked == false) {
 				tableRow = document.getElementById(rowId);
 				tableRow.style.setProperty("text-decoration", "none");
@@ -193,6 +187,8 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<!-- Needed for column sorting feature -->
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
+		<!-- Needed for fade effect -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</body>
 
 </html>
