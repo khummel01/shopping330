@@ -14,12 +14,19 @@ th {
 	vertical-align: middle; 
  }
  
+/*Checkbox dimensions*/
 .checkBox {
 	position: relative;
     top: 15px;
 }
 
-#buttonPosition {
+/*Div table positioning*/
+#divTable {
+	padding-bottom: 218px;
+}
+
+/*Add button dimensions*/
+#addBttnPosition {
     padding: 30px;
 }
 
@@ -29,17 +36,29 @@ th {
     transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
+/*Footer dimensions*/
 .panel-footer{
     background: #4285F4;
     color: white;
-	padding: 22px;
-	position: absolute;
+	padding: 8px;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 }
 
+/*Footer color*/
 #lc-link {
 	color: white;
+}
+
+/*Fade out effect*/
+#tableEntry {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 

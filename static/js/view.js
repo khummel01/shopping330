@@ -5,7 +5,7 @@ class View {
 		model.subscribe(this.redrawList.bind(this));
 	}
 
-	redrawList(shoppingList, msg) {
+	redrawList(shoppingList, msg) { 
 		let tbl = document.getElementById("itemlst");
 		// clear table
 		let rowCount = tbl.rows.length;
