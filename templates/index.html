@@ -35,20 +35,19 @@
 
 		function strikeThrough(chkBoxId, rowId, mouseEvent) { // weird occurance here
 			let  queryId = "#" + chkBoxId;
-			if (document.querySelector(queryId).checked == true) {
-				tableRow = document.getElementById(rowId);
-				tableRow.style.setProperty("text-decoration", "line-through");
-				// tableRow.style.borderBottom = "3px solid #111";
-				// tableRow.style.width = "300px";
-				// let s = tableRow.style;
-				// s.opacity = 1;
-				$("#rowId").fadeOut(5000);
-					if (document.querySelector(queryId).checked != false)
-						controller.deleteItem(rowId);
-			} else if (document.querySelector(queryId).checked == false) {
-				tableRow = document.getElementById(rowId);
-				tableRow.style.setProperty("text-decoration", "none");
-			}
+			tableRow = document.getElementById(rowId);
+			tableRow.style.setProperty("text-decoration", "line-through");
+			// tableRow.style.borderBottom = "3px solid #111";
+			// tableRow.style.width = "300px";
+			// let s = tableRow.style;
+			// s.opacity = 1;
+			$(tableRow).fadeOut(1300);
+			controller.deleteItem(rowId);
+			// if (document.querySelector(queryId).checked != false) {
+			// 	controller.deleteItem(rowId);
+			// } else {
+			// 	tableRow.style.setProperty("text-decoration", "none");
+			// }
 		}
 		
 		function clearTable() {
