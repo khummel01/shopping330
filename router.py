@@ -8,7 +8,6 @@ shoppingMap = ""
 # decorator--way to wrap up an existing python function and modify its behavior, using it here to route a url to a return value of a function
 @app.route("/save", methods=['POST']) # when the url /getnum is called, I'm going to call function getnum() below
 def save(): # can be called anything
-	# print("data: " + str(request.get_json()))
 	shoppingMap = str(request.get_json()) # request is an object, the body
 	return ""
 
