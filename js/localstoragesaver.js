@@ -8,7 +8,6 @@ class LocalStorageSaver {
 	saveData(shoppingList, msg) {
 		let shoppingCart = [];
 		let nextDict = {};
-		let namesDict = {1: "name", 2: "section", 3: "quantity", 4: "store", 5: "priority", 6: "price"};
 		for (let i = 0; i < shoppingList.getLength(); i++) {
 			let item = shoppingList.getItems()[i];
 			nextDict["name"] = item.getItem();
