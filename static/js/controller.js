@@ -17,9 +17,7 @@ class Controller {
 			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
 			this.shoppingList.addShoppingItem(item);
 			this.pubSub.publish("newitem", this.shoppingList);
-		// }
-		// else {
-			document.getElementById("inputForm").reset();
+
 			let config = {}; // object, heres the method, body, headers
 			config.method = 'POST';
 			config.body = JSON.stringify(this.shoppingList) // must match content type
@@ -31,6 +29,9 @@ class Controller {
 				console.log(response)
 			});
 		// }
+		// else {
+			document.getElementById("inputForm").reset();
+		// }
 	}
 
 	deleteItem(rowId) {
@@ -38,21 +39,32 @@ class Controller {
 	}
 	
 	clearTable() {
+		// NOT WORKING
 		this.shoppingList.clear();
 		this.pubSub.publish("clear table", this.shoppingList);
+
+		let config = {};
+		config.method = 'POST';
+		config.body = JSON.stringify(this.shoppingList)
+		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+		fetch(`http://localhost:5000/save`, config) 
+		.then(function(response) {
+			console.log(response)
+		})
 	}
 
 	pageLoad() {
 		let config = {}; // object, here's the method, body, headers
 		config.method = 'GET';
-		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'} // text/plain?
 
-		fetch(`http://localhost:5000/retrieve`, config) // fetch is calling a server,
+		fetch(`http://localhost:5000/retrieve`, config) // fetch is calling a server
 			.then(function(response) {
 				console.log(response)
 				if (response.type != "cors") {
 					this.shoppingList = JSON.parse(response.json);
-					this.pubSub.publish("newitem", this.shoppingList);
+					this.pubSub.publish("onload", this.shoppingList);
 				}
 			});
 
