@@ -43,7 +43,7 @@ class Controller {
 	}
 
 	pageLoad() {
-		let config = {}; // object, heres the method, body, headers
+		let config = {}; // object, here's the method, body, headers
 		config.method = 'GET';
 		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
