@@ -17,7 +17,7 @@ class Controller {
 			config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
 			// TODO: make into a listener 
-			fetch(`http://localhost:5000/cart`, config) 
+			fetch(`/cart`, config) 
 			.then(function(response) {
 				console.log("shopping list save (coming from newItem() function)")
 			});
