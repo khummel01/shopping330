@@ -1,10 +1,10 @@
 from flask import Flask, url_for, redirect, render_template, request, Response, jsonify, json, request 
-from flask_cors import CORS
+# from flask_cors import CORS
 from pathlib import Path 
 import os
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # shoppingJSON = "[]"
 
 @app.route("/cart", methods=["POST", "GET"]) 
