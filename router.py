@@ -1,20 +1,35 @@
 from flask import Flask, url_for, redirect, render_template, request, Response, jsonify, json, request 
 from flask_cors import CORS
-import sys
+from pathlib import Path 
+import os
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-shoppingMap = ""
-# decorator--way to wrap up an existing python function and modify its behavior, using it here to route a url to a return value of a function
-@app.route("/save", methods=['POST']) # when the url /getnum is called, I'm going to call function getnum() below
-def save(): # can be called anything
-	shoppingMap = str(request.get_json()) # request is an object, the body
-	return ""
+# shoppingJSON = "[]"
 
-@app.route("/retrieve", methods=['GET'])
-def retrieve():
-	return shoppingMap
+@app.route("/cart", methods=["POST", "GET"]) 
+def cart():
+	print(request.method)
 
+	if request.method == "GET":
+		my_file = Path("cart.txt")
+		shoppingJSON = "[]"
+		if my_file.is_file():
+			file = open("cart.txt", "r")
+			shoppingJSON = file.read()
+		print("retrieving!")
+		print(shoppingJSON)
+		return shoppingJSON
+
+	if request.method == "POST":
+		shoppingJSON = str(request.get_json())
+		shoppingJSON = shoppingJSON.replace("'", "\"")
+		my_file = Path("cart.txt")
+		if my_file.is_file():
+			os.remove("cart.txt")
+		file = open("cart.txt", "w")
+		file.write(shoppingJSON)
+		return ""
 
 
 if __name__ == "__main__":

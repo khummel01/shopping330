@@ -8,7 +8,6 @@ class ShoppingItem {
 		this.store = store;
 		this.priority = priority;
 		this.price = price;
-		this._purchased = false;
 	}
 
 	getItem() {

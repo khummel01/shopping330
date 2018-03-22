@@ -21,6 +21,5 @@ class LocalStorageSaver {
 			nextDict = {};
 		}
 		localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-		// call to fetch?
 	}
 }
