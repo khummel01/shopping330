@@ -51,7 +51,7 @@ class Controller {
 
 		let that = this;
 
-		fetch(`http://localhost:5000/cart`, config) // fetch is calling a server
+		fetch(`/cart`, config) // fetch is calling a server, http://localhost:5000/cart
 			.then(function(response) {
 				return response.json();
 			})
