@@ -38,7 +38,7 @@ class Controller {
 		config.body = JSON.stringify(this.shoppingList)
 		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
-		fetch(`http://localhost:5000/cart`, config) 
+		fetch(`/cart`, config) 
 		.then(function(response) {
 			console.log(response)
 		})
