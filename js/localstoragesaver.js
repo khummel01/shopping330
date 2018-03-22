@@ -21,4 +21,8 @@ class LocalStorageSaver {
 		}
 		localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
 	}
+
+	getData() {
+		return shoppingCart;
+	}
 }

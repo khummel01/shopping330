@@ -53,6 +53,24 @@
 		function clearTable() {
 			controller.clearTable();
 		}
+
+		window.onload = function() {
+			myStorage = window.localStorage;
+			myData = myStorage.getItem("shoppingCart")
+			// alert(myData);
+			let x = ["name", "section", "baking", "quantity", "store", "priority"]
+			let totalList = [];
+			for (let i = 0; myData.length; i++) {
+				totalList.push(myData[i]);
+				let spec = {};
+				for (let j = 0; Object.keys(myData[i]).length; j++) {
+					spec[x[j]] = myData[i][x[j]];
+				}
+				controller.newItem(spec);
+			}
+		// 	alert(totalList);
+		}
+
 	</script>
 	
 	<body>
