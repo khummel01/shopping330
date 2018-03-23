@@ -23,7 +23,17 @@ class Controller {
 	}
 
 	deleteItem(rowId) {
+		// let that = this		
+		// function statement1() { 
+		//     that.shoppingList.remove(rowId);
+		// } 
+		// function statement2() { 
+		//     that.pubSub.publish("remove table entry", that.shoppingList);
+		// } 
+		// statement1(); 
+		// setTimeout(statement2(), 3000); 
 		this.shoppingList.remove(rowId);
+		// this.pubSub.publish("remove table entry", this.shoppingList);
 	}
 	
 	clearTable() {

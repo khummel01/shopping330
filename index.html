@@ -37,17 +37,8 @@
 			let  queryId = "#" + chkBoxId;
 			tableRow = document.getElementById(rowId);
 			tableRow.style.setProperty("text-decoration", "line-through");
-			// tableRow.style.borderBottom = "3px solid #111";
-			// tableRow.style.width = "300px";
-			// let s = tableRow.style;
-			// s.opacity = 1;
 			$(tableRow).fadeOut(1300);
 			controller.deleteItem(rowId);
-			// if (document.querySelector(queryId).checked != false) {
-			// 	controller.deleteItem(rowId);
-			// } else {
-			// 	tableRow.style.setProperty("text-decoration", "none");
-			// }
 		}
 		
 		function clearTable() {
@@ -56,21 +47,16 @@
 
 		window.onload = function() {
 			myStorage = window.localStorage;
-			myData = myStorage.getItem("shoppingCart")
-			// alert(myData);
-			let x = ["name", "section", "baking", "quantity", "store", "priority"]
-			let totalList = [];
-			for (let i = 0; myData.length; i++) {
-				totalList.push(myData[i]);
+			myData = JSON.parse(myStorage.getItem("shoppingCart"))
+			var x = ["name", "section", "quantity", "store", "priority", "price"]
+			for (let i = 0; i < myData.length; i++) {
 				let spec = {};
-				for (let j = 0; Object.keys(myData[i]).length; j++) {
+				for (let j = 0; j < Object.keys(myData[i]).length; j++) {
 					spec[x[j]] = myData[i][x[j]];
 				}
 				controller.newItem(spec);
 			}
-		// 	alert(totalList);
 		}
-
 	</script>
 	
 	<body>
@@ -188,15 +174,6 @@
 				</table>
 			</div>
 		</div>
-		
-		<!-- Footer -->
-		<footer class="panel-footer">
-			<!--Copyright-->
-			<div class="text-center">
-				© 2018 Copyright:
-				<a href="http://www.luther.edu/" id="lc-link"><u>Luther College</u></a>
-			</div>
-		</footer>
 		
 		<!-- Others scripts -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
