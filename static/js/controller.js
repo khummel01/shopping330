@@ -35,6 +35,7 @@ class Controller {
 
 	deleteItem(rowId) {
 		this.shoppingList.remove(rowId);
+		this.pubSub.publish("remove table entry", this.shoppingList);
 	}
 	
 	clearTable() {
