@@ -7,13 +7,13 @@ class Controller {
 	}
 
 	newItem(itemSpec) {
-		let count = 0;
-		for (var key in itemSpec) {
-			if (itemSpec[key] != "") {
-				count += 1;
-			}
-		}
-		if (count == 6) {
+		// let count = 0;
+		// for (var key in itemSpec) {
+		// 	if (itemSpec[key] != "") {
+		// 		count += 1;
+		// 	}
+		// }
+		// if (count == 6) {
 			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
 			this.shoppingList.addShoppingItem(item);
 			this.pubSub.publish("newitem", this.shoppingList);
@@ -28,38 +28,35 @@ class Controller {
 			.then(function(response) {
 				console.log("shopping list save (coming from newItem() function)")
 			});
-		} else {
-			document.getElementById("inputForm").reset();
-		}
+		// } else {
+		// 	document.getElementById("inputForm").reset();
+		// }
 	}
 
 	deleteItem(rowId) {
 		this.shoppingList.remove(rowId);
-		this.pubSub.publish("remove table entry", this.shoppingList);
 		let config = {};
 		config.method = 'POST';
-		config.body = JSON.stringify(this.shoppingList)
+		config.body = JSON.stringify(this.shoppingList.getItems())
 		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
 		fetch(`/cart`, config) 
 		.then(function(response) {
-			console.log(response)
-		})
+			console.log("shopping list save (coming from newItem() function)")
+		});
 	}
 	
 	clearTable() {
-		this.shoppingList.clear();
-		this.pubSub.publish("clear table", this.shoppingList);
-
-		let config = {};
+		this.shoppingList.remove(rowId);
+		let config = {}; 
 		config.method = 'POST';
-		config.body = JSON.stringify(this.shoppingList)
+		config.body = JSON.stringify(this.shoppingList.getItems())
 		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
 		fetch(`/cart`, config) 
 		.then(function(response) {
-			console.log(response)
-		})
+			console.log("shopping list save (coming from newItem() function)")
+		});
 	}
 
 	pageLoad() {
