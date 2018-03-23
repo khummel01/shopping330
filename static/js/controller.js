@@ -7,30 +7,30 @@ class Controller {
 	}
 
 	newItem(itemSpec) {
-			let count = 0;
-			for (var key in itemSpec) {
-				if (itemSpec[key] != "") {
-					count += 1;
-				}
+		let count = 0;
+		for (var key in itemSpec) {
+			if (itemSpec[key] != "") {
+				count += 1;
 			}
-			if (count == 6) {
-				let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
-				this.shoppingList.addShoppingItem(item);
-				this.pubSub.publish("newitem", this.shoppingList);
+		}
+		if (count == 6) {
+			let item = new ShoppingItem(itemSpec["name"], itemSpec["section"], itemSpec["quantity"], itemSpec["store"], itemSpec["priority"], itemSpec["price"]);
+			this.shoppingList.addShoppingItem(item);
+			this.pubSub.publish("newitem", this.shoppingList);
 
-				let config = {}; // object, heres the method, body, headers
-				config.method = 'POST';
-				config.body = JSON.stringify(this.shoppingList.getItems()) // must match content type
-				config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+			let config = {}; // object, heres the method, body, headers
+			config.method = 'POST';
+			config.body = JSON.stringify(this.shoppingList.getItems()) // must match content type
+			config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
-				// TODO: make into a listener 
-				fetch(`/cart`, config) 
-				.then(function(response) {
-					console.log("shopping list save (coming from newItem() function)")
-				});
-			} else {
-				document.getElementById("inputForm").reset();
-			}
+			// TODO: make into a listener 
+			fetch(`/cart`, config) 
+			.then(function(response) {
+				console.log("shopping list save (coming from newItem() function)")
+			});
+		} else {
+			document.getElementById("inputForm").reset();
+		}
 	}
 
 	deleteItem(rowId) {
