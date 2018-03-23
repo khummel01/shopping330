@@ -36,6 +36,15 @@ class Controller {
 	deleteItem(rowId) {
 		this.shoppingList.remove(rowId);
 		this.pubSub.publish("remove table entry", this.shoppingList);
+		let config = {};
+		config.method = 'POST';
+		config.body = JSON.stringify(this.shoppingList)
+		config.headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+		fetch(`/cart`, config) 
+		.then(function(response) {
+			console.log(response)
+		})
 	}
 	
 	clearTable() {
