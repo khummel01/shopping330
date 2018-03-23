@@ -33,7 +33,7 @@ class Controller {
 		// statement1(); 
 		// setTimeout(statement2(), 3000); 
 		this.shoppingList.remove(rowId);
-		// this.pubSub.publish("remove table entry", this.shoppingList);
+		this.pubSub.publish("remove table entry", this.shoppingList);
 	}
 	
 	clearTable() {
