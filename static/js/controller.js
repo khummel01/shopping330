@@ -46,8 +46,8 @@ class Controller {
 		});
 	}
 	
-	clearTable() {
-		this.shoppingList.remove(rowId);
+	clearTable(rowId) {
+		this.shoppingList.clear();
 		let config = {}; 
 		config.method = 'POST';
 		config.body = JSON.stringify(this.shoppingList.getItems())
