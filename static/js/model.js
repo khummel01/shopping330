@@ -66,7 +66,6 @@ class Subject {
 class ShoppingList {
 	constructor() {
 		this.cart = [];
-		this.oldCart = [];
 	}
 
 	addShoppingItem(item) {
