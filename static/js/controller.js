@@ -48,6 +48,7 @@ class Controller {
 	
 	clearTable(rowId) {
 		this.shoppingList.clear();
+		this.pubSub.publish("clear table", this.shoppingList)
 		let config = {}; 
 		config.method = 'POST';
 		config.body = JSON.stringify(this.shoppingList.getItems())
