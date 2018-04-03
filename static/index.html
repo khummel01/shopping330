@@ -13,12 +13,13 @@
 		<script type="application/javascript" src="js/controller.js"></script>
 		<script type="application/javascript" src="js/model.js"></script>
 		<script type="application/javascript" src="js/view.js"></script>
-		<script type="application/javascript" src="js/localstoragesaver.js"></script>
+		<script type="application/javascript" src="js/storage.js"></script>
 	</head>
 
 	<script>
 		var pubSub = new Subject();
-		var controller = new Controller(pubSub);
+		var storage = new Storage(pubSub);
+		var controller = new Controller(pubSub, storage);
 		var view = new View(pubSub);
 
 		function newItem() {
@@ -45,7 +46,7 @@
 		}
 
 		window.onload = function() {
-			controller.pageLoad();
+			storage.pageLoad();
 		}
 	</script>
 	

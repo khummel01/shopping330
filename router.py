@@ -1,11 +1,11 @@
 from flask import Flask, url_for, redirect, render_template, request, Response, jsonify, json, request 
-# from flask_cors import CORS
+from flask_cors import CORS # comment out when on pythonanywhere
 from pathlib import Path 
 import os
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"/*": {"origins": "*"}})
-# shoppingJSON = "[]"
+cors = CORS(app, resources={r"/*": {"origins": "*"}}) # comment out when on pythonanywhere
+shoppingJSON = "[]";
 
 @app.route("/cart", methods=["POST", "GET"]) 
 def cart():
@@ -17,7 +17,7 @@ def cart():
 		if my_file.is_file():
 			file = open("cart.txt", "r")
 			shoppingJSON = file.read()
-		print("retrieving!")
+		print("~~~~~RETRIEVING~~~~~")
 		print(shoppingJSON)
 		return shoppingJSON
 
@@ -29,6 +29,7 @@ def cart():
 			os.remove("cart.txt")
 		file = open("cart.txt", "w")
 		file.write(shoppingJSON)
+		print("~~~~~POSTING~~~~~")
 		return ""
 
 
